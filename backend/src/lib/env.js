@@ -1,3 +1,4 @@
+console.log(process.cwd());
 import dotenv from "dotenv";
 
 dotenv.config({ quiet: true });

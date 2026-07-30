@@ -1,23 +1,30 @@
 import './App.css'
-import { SignIn, SignInButton, SignOutButton, UserButton } from '@clerk/react'
+import { SignInButton, SignOutButton, UserButton, useUser } from '@clerk/react'
 
 function App() {
+  const { isSignedIn } = useUser()
+
   return (
-    <>
+    <div style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
       <h1>Welcome to the app</h1>
+      <p>Sign in to continue.</p>
 
-      <SignOut>
-      <SignInButton mode="modal" >
-        <button>Login</button>
-      </SignInButton>
-      </SignOut>
+      <div style={{ marginTop: '1rem' }}>
+        <SignInButton mode="modal">
+          <button>Login</button>
+        </SignInButton>
+      </div>
 
-      <SignIn>
-        <SignOutButton />
-      </SignIn>
+      <div style={{ marginTop: '1rem' }}>
+        <UserButton />
+      </div>
 
-      <UserButton />
-    </>
+      {isSignedIn && (
+        <div style={{ marginTop: '1rem' }}>
+          <SignOutButton />
+        </div>
+      )}
+    </div>
   );
 }
 
