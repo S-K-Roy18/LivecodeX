@@ -1,31 +1,28 @@
-import './App.css'
 import { SignInButton, SignOutButton, UserButton, useUser } from '@clerk/react'
+import { Routes, Route, Navigate } from 'react-router';
+import HomePage from './pages/HomePage';
+
+import ProblemsPage from './pages/ProblemsPage';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   const { isSignedIn } = useUser()
 
   return (
-    <div style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
-      <h1>Welcome to the app</h1>
-      <p>Sign in to continue.</p>
+    <>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      
+      <Route path="/problems" element={isSignedIn ? <ProblemsPage />: <Navigate to={"/"} />} />
+    </Routes>
 
-      <div style={{ marginTop: '1rem' }}>
-        <SignInButton mode="modal">
-          <button>Login</button>
-        </SignInButton>
-      </div>
-
-      <div style={{ marginTop: '1rem' }}>
-        <UserButton />
-      </div>
-
-      {isSignedIn && (
-        <div style={{ marginTop: '1rem' }}>
-          <SignOutButton />
-        </div>
-      )}
-    </div>
+    <Toaster toastOptions={{duration:3000}} />
+    </>
   );
 }
 
 export default App;
+
+// tw, dausyui, react-router, react-hot-toast,
+// todo: react-query, aka tanstack query, axios
+
