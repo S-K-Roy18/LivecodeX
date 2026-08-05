@@ -10,20 +10,31 @@ import { inngest, functions } from "./lib/inngest.js";
 
 import chatRoutes from "./routes/chatRoutes.js";
 import sessionRoutes from "./routes/sessionRoute.js";
+import codeRoute from "./routes/codeRoute.js";
 
 const app = express();
 
+app.use(express.json());
+
 const __dirname = path.resolve();
 
-//middleware
-app.use(express.json());
-//credentials:true meaning?? => server allows a browser to include cookies on request
-app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
-app.use(clerkMiddleware()); // this adds auth field to request object: req.auth()
+// Middleware
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
+app.use(clerkMiddleware());
+
+// Routes
 app.use("/api/inngest", serve({ client: inngest, functions }));
 app.use("/api/chat", chatRoutes);
 app.use("/api/sessions", sessionRoutes);
+app.use("/api/code", codeRoute);
 
 app.get("/health", (req, res) => {
   res.status(200).json({ msg: "api is up and running" });
