@@ -19,7 +19,6 @@
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "inngest": "^3.54.0",
-    "livecodex": "file:..",
     "mongoose": "^8.19.1",
     "stream-chat": "^9.24.0"
   },
