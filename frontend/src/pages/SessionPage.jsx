@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { useEndSession, useJoinSession, useSessionById } from "../hooks/useSessions";
 import { PROBLEMS } from "../data/problems";
-import { executeCode } from "../lib/piston";
+import { executeCode } from "../lib/codeExecutor";
 import Navbar from "../components/Navbar";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { getDifficultyBadgeClass } from "../lib/utils";
@@ -43,7 +43,7 @@ function SessionPage() {
     ? Object.values(PROBLEMS).find((p) => p.title === session.problem)
     : null;
 
-  const [selectedLanguage, setSelectedLanguage] = useState("javascript");
+  const [selectedLanguage, setSelectedLanguage] = useState("python");
   const [code, setCode] = useState(problemData?.starterCode?.[selectedLanguage] || "");
 
   // auto-join session if user is not already a participant and not the host

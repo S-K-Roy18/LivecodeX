@@ -7,7 +7,7 @@ import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import ProblemDescription from "../components/ProblemDescription";
 import OutputPanel from "../components/OutputPanel";
 import CodeEditorPanel from "../components/CodeEditorPanel";
-import { executeCode } from "../lib/piston";
+import { executeCode } from "../lib/codeExecutor";
 
 import toast from "react-hot-toast";
 import confetti from "canvas-confetti";
@@ -17,8 +17,8 @@ function ProblemPage() {
   const navigate = useNavigate();
 
   const [currentProblemId, setCurrentProblemId] = useState("two-sum");
-  const [selectedLanguage, setSelectedLanguage] = useState("javascript");
-  const [code, setCode] = useState(PROBLEMS[currentProblemId].starterCode.javascript);
+  const [selectedLanguage, setSelectedLanguage] = useState("python");
+  const [code, setCode] = useState(PROBLEMS[currentProblemId].starterCode.python);
   const [output, setOutput] = useState(null);
   const [isRunning, setIsRunning] = useState(false);
 
@@ -56,10 +56,9 @@ function ProblemPage() {
     });
   };
 
-  const normalizeOutput = (output) => {
-    // normalize output for comparison (trim whitespace, handle different spacing)
-    return output
-      .trim()
+  const normalizeOutput = (output = "") => {
+  return output
+    .trim()
       .split("\n")
       .map((line) =>
         line
@@ -86,24 +85,24 @@ function ProblemPage() {
     setOutput(null);
 
     const result = await executeCode(selectedLanguage, code);
-    setOutput(result);
-    setIsRunning(false);
+setOutput(result);
+setIsRunning(false);
 
-    // check if code executed successfully and matches expected output
+if (result.success) {
+  const actualOutput = result.result?.output || "";
+  const expectedOutput = currentProblem.expectedOutput[selectedLanguage];
 
-    if (result.success) {
-      const expectedOutput = currentProblem.expectedOutput[selectedLanguage];
-      const testsPassed = checkIfTestsPassed(result.output, expectedOutput);
+  const testsPassed = checkIfTestsPassed(actualOutput, expectedOutput);
 
-      if (testsPassed) {
-        triggerConfetti();
-        toast.success("All tests passed! Great job!");
-      } else {
-        toast.error("Tests failed. Check your output!");
-      }
-    } else {
-      toast.error("Code execution failed!");
-    }
+  if (testsPassed) {
+    triggerConfetti();
+    toast.success("All tests passed! Great job!");
+  } else {
+    toast.error("Tests failed. Check your output!");
+  }
+} else {
+  toast.error("Code execution failed!");
+}
   };
 
   return (
