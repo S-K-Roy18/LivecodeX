@@ -5,7 +5,7 @@ A Modern Full-Stack Live Coding Interview Platform
 </h3>
 
 <p align="center">
-  Conduct live coding interviews with real-time video calling, collaborative code editing, secure authentication, coding practice, and multi-language code execution.
+  Conduct live coding interviews with real-time video calling, collaborative code editing, secure authentication, coding practice, and multi-language code execution using an online compiler API.
 </p>
 
 <p align="center">
@@ -41,12 +41,14 @@ A Modern Full-Stack Live Coding Interview Platform
 
 - 💻 VS Code-like Monaco Editor
 - 🌙 Dark & Light Theme Support
-- 🌍 Multi-language Support
-- ▶️ Run Code
+- 🌍 Multi-language Code Support
+- ▶️ Real-time Code Execution
+- 🧪 Custom Code Testing
 - 📋 Copy Code
 - 💾 Save Code
 - 🧩 Coding Practice Mode
-- 📜 Submission History *(Coming Soon)*
+- 📚 Multiple Coding Problems
+- 🎯 Automatic Test Case Evaluation
 
 ---
 
@@ -85,18 +87,26 @@ A Modern Full-Stack Live Coding Interview Platform
 - REST API using Express.js
 - MongoDB Database
 - Mongoose ODM
+- Clerk Backend Authentication
 - Inngest Background Jobs
-- TanStack Query
 - Stream Video SDK
+- OnlineCompiler API integration
+- Code execution API
 
 ---
 
 ### 🧪 Code Execution
 
-- 🐳 Docker-based Code Execution *(Integration in Progress)*
-- ⚡ Judge0 Integration *(Integration in Progress)*
-- 🧪 Custom Test Cases *(Coming Soon)*
-- 🎯 Automatic Evaluation *(Coming Soon)*
+- ⚡ Online code execution using OnlineCompiler API
+- 🐍 Python execution
+- ☕ Java execution
+- 🔵 C execution
+- 🟣 C++ execution
+- ▶️ Run code directly from the Monaco Editor
+- 📤 Program input support
+- 📋 Real-time output display
+- ❌ Compilation and runtime error handling
+- 🎯 Automatic test case evaluation
 
 ---
 
@@ -117,11 +127,13 @@ A Modern Full-Stack Live Coding Interview Platform
 
 - React.js
 - Vite
-- TypeScript
+- JavaScript
+- JSX
 - Tailwind CSS
 - Monaco Editor
 - React Router DOM
 - TanStack Query
+- Axios
 - Clerk Authentication
 - Stream Video SDK
 - Framer Motion
@@ -136,9 +148,10 @@ A Modern Full-Stack Live Coding Interview Platform
 - MongoDB
 - Mongoose
 - Clerk Backend SDK
-- JWT
 - Inngest
-- Judge0 *(Integration in Progress)*
+- Stream SDK
+- Axios
+- OnlineCompiler API
 
 ---
 
@@ -148,19 +161,24 @@ A Modern Full-Stack Live Coding Interview Platform
 LivecodeX
 │
 ├── frontend
-│   ├── src
 │   ├── public
+│   ├── src
+│   │   ├── components
+│   │   ├── pages
+│   │   ├── data
+│   │   └── lib
 │   └── package.json
 │
 ├── backend
 │   ├── src
-│   ├── routes
-│   ├── controllers
-│   ├── middleware
+│   │   ├── controller
+│   │   ├── routes
+│   │   ├── services
+│   │   ├── middleware
+│   │   └── lib
 │   └── package.json
 │
 ├── README.md
-└── docker-compose.yml
 ```
 
 ---
@@ -178,7 +196,6 @@ DB_URL=your_mongodb_connection_url
 CLIENT_URL=http://localhost:5173
 
 CLERK_SECRET_KEY=your_clerk_secret_key
-CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
 
 STREAM_API_KEY=your_stream_api_key
 STREAM_API_SECRET=your_stream_api_secret
@@ -186,9 +203,7 @@ STREAM_API_SECRET=your_stream_api_secret
 INNGEST_EVENT_KEY=your_inngest_event_key
 INNGEST_SIGNING_KEY=your_inngest_signing_key
 
-# Code Execution
-JUDGE0_URL=http://localhost:2358
-JUDGE0_API_KEY=
+ONLINE_COMPILER_API_KEY=your_onlinecompiler_api_key
 ```
 
 ---
@@ -260,16 +275,11 @@ http://localhost:5173
 | Frontend | Vercel |
 | Backend | Render |
 | Database | MongoDB Atlas |
-| Video Service | Stream |
-| Code Execution | Judge0 (Docker) *(In Progress)* |
+| Authentication | Clerk |
+| Video & Chat | Stream |
+| Code Execution | OnlineCompiler API |
 
----
 
-# 📸 Screenshots
-
-## Home Page
-
-<img src="./frontend/public/screenshot-for-readme.png"/>
 
 ---
 
@@ -281,9 +291,13 @@ http://localhost:5173
 - ✅ Chat System
 - ✅ Screen Sharing
 - ✅ Dashboard
-- 🔄 Judge0 Integration
-- 🔄 Docker Code Execution
-- 🔄 Test Case Evaluation
+- ✅ Coding Practice
+- ✅ Multi-language Code Execution
+- ✅ Python Support
+- ✅ Java Support
+- ✅ C Support
+- ✅ C++ Support
+- ✅ Automatic Test Case Evaluation
 - 🔄 Submission History
 - 🔄 AI Interview Feedback
 - 🔄 Collaborative Whiteboard
